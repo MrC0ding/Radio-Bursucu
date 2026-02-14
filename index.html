@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Radio August Infinit</title>
+    
+    <link rel="icon" type="image/png" href="URL_LOGO_AICI.png">
+
     <style>
         :root { --orange: #ff4500; --gold: #ffd700; }
         
@@ -16,7 +19,15 @@
             background: linear-gradient(135deg, #ff9d00, #ffeb3b, #00d4ff);
             font-family: sans-serif;
             overflow: hidden;
-            touch-action: manipulation; /* Previne zoom-ul accidental pe butoane */
+            touch-action: manipulation;
+        }
+
+        /* 2. STIL PENTRU LOGO-UL DIN PAGINA */
+        .logo-container img {
+            width: 70px;
+            height: auto;
+            margin-bottom: 10px;
+            filter: drop-shadow(0 0 5px rgba(0,0,0,0.2));
         }
 
         .pulsing { animation: pulse-bg 0.5s infinite alternate; }
@@ -32,7 +43,7 @@
             box-shadow: 0 15px 40px rgba(0,0,0,0.3);
             text-align: center;
             border: 5px solid var(--orange);
-            width: 90%; /* Se adaptează pe ecranul telefonului */
+            width: 90%;
             max-width: 350px;
             z-index: 100;
         }
@@ -58,8 +69,8 @@
 
         .controls { display: flex; justify-content: space-around; align-items: center; margin-top: 10px; }
         
-        .btn-nav { background: #444; border: none; color: white; width: 45px; height: 45px; border-radius: 50%; font-size: 1rem; }
-        .btn-play { background: #28a745; border: none; width: 65px; height: 65px; border-radius: 50%; font-size: 1.5rem; color: white; box-shadow: 0 0 10px #28a745; }
+        .btn-nav { background: #444; border: none; color: white; width: 45px; height: 45px; border-radius: 50%; font-size: 1rem; cursor: pointer; }
+        .btn-play { background: #28a745; border: none; width: 65px; height: 65px; border-radius: 50%; font-size: 1.5rem; color: white; box-shadow: 0 0 10px #28a745; cursor: pointer; }
 
         .money {
             position: absolute;
@@ -74,6 +85,10 @@
 <body>
 
     <div class="main-card">
+        <div class="logo-container">
+            <img src="URL_LOGO_AICI.png" alt="Logo">
+        </div>
+
         <p style="color:var(--orange); font-weight:bold; margin:0;">AUGUST INFINIT</p>
         <h1 id="date-display" class="day">31</h1>
         
@@ -82,17 +97,17 @@
         </div>
 
         <div class="player-box">
-            <div id="track-name" style="font-size:0.8rem; color:var(--gold); margin-bottom:10px;">Selectează Vibe-ul</div>
+            <div id="track-name" style="font-size:0.8rem; color:var(--gold); margin-bottom:10px;">Se încarcă...</div>
             <div class="controls">
                 <button class="btn-nav" onclick="prevSong()">⏮️</button>
                 <button id="play-btn" class="btn-play" onclick="togglePlay()">▶️</button>
                 <button class="btn-nav" onclick="nextSong()">⏭️</button>
             </div>
         </div>
-        <p style="font-size:0.6rem; color:#888; margin-top:10px;">*Pe mobil, muzica pornește doar la apăsare.</p>
+        <p style="font-size:0.6rem; color:#888; margin-top:10px;">*Apasă Play pentru a activa vibe-ul.</p>
     </div>
 
-    <audio id="audio-element"></audio>
+    <audio id="audio-element" preload="auto"></audio>
 
     <script>
         const playlist = [
@@ -110,15 +125,22 @@
 
         function loadTrack(index) {
             audio.src = playlist[index].file;
+            audio.load(); // Esențial pentru GitHub Pages ca să reinițieze buffer-ul
             document.getElementById('track-name').innerText = playlist[index].name;
         }
 
-        function togglePlay() {
+        async function togglePlay() {
             if (audio.paused) {
-                audio.play();
-                playBtn.innerText = "⏸️";
-                document.body.classList.add('pulsing');
-                if(!window.mInt) window.mInt = setInterval(createMoney, 200);
+                try {
+                    // Browserele returnează o promisiune la .play()
+                    await audio.play();
+                    playBtn.innerText = "⏸️";
+                    document.body.classList.add('pulsing');
+                    if(!window.mInt) window.mInt = setInterval(createMoney, 200);
+                } catch (err) {
+                    console.log("Așteptăm interacțiunea utilizatorului sau încărcarea file-ului.");
+                    // Dacă fișierul nu există, aici va apărea eroarea în consolă (F12)
+                }
             } else {
                 audio.pause();
                 playBtn.innerText = "▶️";
@@ -128,8 +150,18 @@
             }
         }
 
-        function nextSong() { currentTrack = (currentTrack + 1) % playlist.length; loadTrack(currentTrack); audio.play(); }
-        function prevSong() { currentTrack = (currentTrack - 1 + playlist.length) % playlist.length; loadTrack(currentTrack); audio.play(); }
+        function nextSong() { 
+            currentTrack = (currentTrack + 1) % playlist.length; 
+            loadTrack(currentTrack); 
+            // Pornim automat după schimbare
+            setTimeout(() => { if(playBtn.innerText === "⏸️") audio.play(); else togglePlay(); }, 100);
+        }
+
+        function prevSong() { 
+            currentTrack = (currentTrack - 1 + playlist.length) % playlist.length; 
+            loadTrack(currentTrack); 
+            setTimeout(() => { if(playBtn.innerText === "⏸️") audio.play(); else togglePlay(); }, 100);
+        }
 
         function createMoney() {
             const m = document.createElement('div');
@@ -155,6 +187,7 @@
             document.getElementById('timer').innerText = `${d}z : ${h}h : ${m}m : ${s}s până la vară!`;
         }
 
+        // Inițializare
         loadTrack(0);
         setInterval(update, 1000);
         update();
