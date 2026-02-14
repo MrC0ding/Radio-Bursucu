@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Radio August Infinit</title>
+    <title>Radio Bursuc</title>
     
     <link rel="icon" type="image/png" href="logo_mini-removebg-preview.png">
 
@@ -15,110 +15,68 @@
         }
         
         body {
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            margin: 0; padding: 0; min-height: 100vh;
+            display: flex; justify-content: center; align-items: center;
             background: linear-gradient(135deg, #ff9d00, #ffeb3b, #00d4ff);
-            font-family: sans-serif;
-            overflow-x: hidden; /* Previne scroll-ul stânga-dreapta */
-            overflow-y: auto;   /* Permite scroll doar dacă e absolut necesar */
+            font-family: sans-serif; overflow-x: hidden; overflow-y: auto;
         }
 
         .wrapper {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            width: 95%;
-            max-width: 360px;
-            padding: 20px 0; /* Spațiu sus-jos ca să nu se lipească de margini */
+            display: flex; flex-direction: column; align-items: center;
+            width: 95%; max-width: 360px; padding: 20px 0;
         }
 
-        /* LOGO CARE SE MICȘOREAZĂ PE TELEFON */
+        /* LOGO MARE SUS */
         .header-logo {
-            width: 45vw; /* Proporțional cu lățimea ecranului */
-            max-width: 160px; /* Dar nu mai mare de 160px */
-            height: auto;
-            margin-bottom: 10px;
+            width: 45vw; max-width: 150px; height: auto; margin-bottom: 15px;
             filter: drop-shadow(0 0 10px rgba(255, 69, 0, 0.5));
             animation: float 3s ease-in-out infinite;
-            flex-shrink: 1; /* Îi dă voie să se micșoreze dacă e nevoie */
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
+        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-12px); } }
 
         .pulsing { animation: pulse-bg 0.5s infinite alternate; }
-        @keyframes pulse-bg {
-            0% { filter: brightness(100%); }
-            100% { filter: brightness(115%); }
-        }
+        @keyframes pulse-bg { 0% { filter: brightness(100%); } 100% { filter: brightness(115%); } }
 
+        /* CARDUL PRINCIPAL */
         .main-card {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 15px 20px;
-            border-radius: 25px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-            text-align: center;
-            border: 5px solid var(--orange);
-            width: 100%;
-            box-sizing: border-box;
+            background: rgba(255, 255, 255, 0.95); padding: 20px;
+            border-radius: 25px; box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            text-align: center; border: 5px solid var(--orange); width: 100%; box-sizing: border-box;
         }
 
-        .day { 
-            font-size: 4.5rem; /* Puțin mai mic să câștigăm spațiu */
-            font-weight: 900; 
-            color: #222; 
-            margin: 5px 0; 
-            text-shadow: 2px 2px var(--gold); 
-        }
+        .day { font-size: 4.5rem; font-weight: 900; color: #222; margin: 5px 0; text-shadow: 2px 2px var(--gold); }
         
         .countdown {
-            background: #000;
-            color: var(--neon-green);
-            padding: 8px;
-            border-radius: 10px;
-            font-family: monospace;
-            margin: 10px 0;
-            font-size: 0.75rem;
+            background: #000; color: var(--neon-green); padding: 8px;
+            border-radius: 10px; font-family: monospace; margin: 10px 0; font-size: 0.75rem;
         }
 
-        .player-box {
-            background: #1a1a1a;
-            border-radius: 18px;
-            padding: 12px;
-            color: white;
-        }
+        .player-box { background: #1a1a1a; border-radius: 18px; padding: 15px; color: white; }
 
-        .controls { 
-            display: flex; 
-            justify-content: space-around; 
-            align-items: center; 
-            margin-top: 10px; 
-        }
+        .controls { display: flex; justify-content: space-around; align-items: center; margin-top: 10px; }
         
-        .btn-nav { background: #333; border: none; color: white; width: 42px; height: 42px; border-radius: 50%; font-size: 1rem; }
-        .btn-play { background: #28a745; border: none; width: 60px; height: 60px; border-radius: 50%; font-size: 1.5rem; color: white; box-shadow: 0 0 15px rgba(40,167,69,0.4); }
+        .btn-nav { background: #333; border: none; color: white; width: 45px; height: 45px; border-radius: 50%; cursor: pointer; font-size: 1.2rem; }
+        .btn-play { background: #28a745; border: none; width: 65px; height: 65px; border-radius: 50%; font-size: 1.6rem; color: white; box-shadow: 0 0 15px rgba(40,167,69,0.4); cursor: pointer; }
 
-        .money {
-            position: absolute;
-            top: -50px;
-            z-index: 50;
-            animation: fall linear forwards;
-            pointer-events: none;
+        /* BUTOANE ADAUGARE */
+        .add-actions { margin-top: 15px; display: flex; flex-direction: column; gap: 8px; }
+        .btn-add { 
+            background: #444; border: none; color: white; padding: 10px; 
+            border-radius: 10px; font-size: 0.75rem; cursor: pointer; font-weight: bold;
+            transition: 0.2s;
         }
+        .btn-upload { background: var(--orange); }
+        .btn-add:active { transform: scale(0.95); }
+
+        .money { position: absolute; top: -50px; z-index: 50; animation: fall linear forwards; pointer-events: none; }
         @keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
-        
-        /* REGLAJ PENTRU ECRANE FOARTE MICI (ex: iPhone SE) */
-        @media (max-height: 600px) {
+
+        /* REGLAJ PENTRU ECRANE MICI */
+        @media (max-height: 650px) {
             .day { font-size: 3.5rem; }
-            .header-logo { max-width: 100px; }
-            .main-card { padding: 10px; }
+            .header-logo { max-width: 110px; }
+            .main-card { padding: 15px; }
         }
     </style>
 </head>
@@ -128,7 +86,7 @@
         <img src="logo_mare.png" alt="Logo" class="header-logo">
 
         <div class="main-card">
-            <p style="color:var(--orange); font-weight:bold; margin:0; font-size: 0.9rem;">AUGUST INFINIT</p>
+            <p style="color:var(--orange); font-weight:bold; margin:0; font-size: 0.8rem; letter-spacing: 1px;">AUGUST INFINIT</p>
             <h1 id="date-display" class="day">31</h1>
             
             <div class="countdown">
@@ -136,37 +94,46 @@
             </div>
 
             <div class="player-box">
-                <div id="track-name" style="font-size:0.8rem; color:var(--gold); margin-bottom:8px; height: 20px; overflow: hidden;">Selectează Vibe-ul</div>
+                <div id="track-name" style="font-size:0.8rem; color:var(--gold); margin-bottom:10px; height: 20px; overflow: hidden; font-weight: bold;">Se încarcă...</div>
+                
                 <div class="controls">
                     <button class="btn-nav" onclick="prevSong()">⏮️</button>
                     <button id="play-btn" class="btn-play" onclick="togglePlay()">▶️</button>
                     <button class="btn-nav" onclick="nextSong()">⏭️</button>
                 </div>
+
+                <div class="add-actions">
+                    <label for="file-upload" class="btn-add btn-upload">
+                        📁 ÎNCARCĂ DIN TELEFON
+                    </label>
+                    <input id="file-upload" type="file" accept="audio/*" onchange="handleFileUpload(event)" style="display: none;">
+                    
+                    <button class="btn-add" onclick="addNewTrack()">+ ADAUGĂ LINK .MP3</button>
+                </div>
             </div>
-            <p style="font-size:0.6rem; color:#888; margin-top:8px;">*Vibe de vară 24/7</p>
+            <p style="font-size:0.55rem; color:#888; margin-top:10px;">*Piesele din telefon dispar la refresh.</p>
         </div>
     </div>
 
     <audio id="audio-element" preload="auto"></audio>
 
     <script>
-        const playlist = [
+        const defaultPlaylist = [
             { name: "Tzanca Uraganu - Vara-i vara", file: "vara-i-vara.mp3" },
             { name: "Babasha - Marae", file: "BABASHA - Marae _ OfficialVideo.mp3" },
-            { name: "Dani Mocanu - Bucurestiul doarme", file: "Dani Mocanu - Bucurestiul doarme  Official Video.mp3" },
-            { name: "Adrian Norocel - Ola Creola ☀️🌊", file: "Adrian Norocel - Ola Creola   Official Video.mp3" },
-            { name: "Florin Salam - De tine m-am indragostit", file: "FLORIN SALAM DE TINE M-AM INDRAGOSTIT [oficial video].mp3" },
-            { name: "Gheboasa X Alberto G. - Baba", file: "GHEBOASA x Alberto Guta - Baba _ Official Video.mp3" },
+            { name: "Gheboasa - Baba", file: "GHEBOASA x Alberto Guta - Baba _ Official Video.mp3" }
         ];
 
+        let customPlaylist = JSON.parse(localStorage.getItem('myAugustPlaylist')) || defaultPlaylist;
         let currentTrack = 0;
         const audio = document.getElementById('audio-element');
         const playBtn = document.getElementById('play-btn');
 
         function loadTrack(index) {
-            audio.src = playlist[index].file;
+            if(customPlaylist.length === 0) return;
+            audio.src = customPlaylist[index].file;
             audio.load();
-            document.getElementById('track-name').innerText = playlist[index].name;
+            document.getElementById('track-name').innerText = customPlaylist[index].name;
         }
 
         async function togglePlay() {
@@ -176,18 +143,54 @@
                     playBtn.innerText = "⏸️";
                     document.body.classList.add('pulsing');
                     if(!window.mInt) window.mInt = setInterval(createMoney, 200);
-                } catch (err) { console.log("Play blockat"); }
+                } catch (err) { 
+                    alert("Eroare: Link-ul nu e valid sau fișierul nu poate fi redat."); 
+                }
             } else {
                 audio.pause();
                 playBtn.innerText = "▶️";
                 document.body.classList.remove('pulsing');
-                clearInterval(window.mInt);
-                window.mInt = null;
+                clearInterval(window.mInt); window.mInt = null;
             }
         }
 
-        function nextSong() { currentTrack = (currentTrack + 1) % playlist.length; loadTrack(currentTrack); if(!audio.paused || document.body.classList.contains('pulsing')) audio.play(); }
-        function prevSong() { currentTrack = (currentTrack - 1 + playlist.length) % playlist.length; loadTrack(currentTrack); if(!audio.paused || document.body.classList.contains('pulsing')) audio.play(); }
+        function nextSong() { currentTrack = (currentTrack + 1) % customPlaylist.length; loadTrack(currentTrack); audio.play(); }
+        function prevSong() { currentTrack = (currentTrack - 1 + customPlaylist.length) % customPlaylist.length; loadTrack(currentTrack); audio.play(); }
+
+        // 1. ADAUGARE PRIN LINK
+        function addNewTrack() {
+            let name = prompt("Nume piesă:");
+            let url = prompt("Link direct .mp3 (Ex: de pe Discord/Dropbox):");
+            if (url) url = url.trim();
+
+            if (name && url) {
+                customPlaylist.push({ name: "🔗 " + name, file: url });
+                localStorage.setItem('myAugustPlaylist', JSON.stringify(customPlaylist));
+                currentTrack = customPlaylist.length - 1;
+                loadTrack(currentTrack);
+                audio.play();
+            }
+        }
+
+        // 2. UPLOAD DIN TELEFON
+        function handleFileUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const fileURL = URL.createObjectURL(file);
+                const fileName = file.name.replace('.mp3', '');
+                
+                customPlaylist.push({ name: "📁 " + fileName, file: fileURL });
+                currentTrack = customPlaylist.length - 1;
+                loadTrack(currentTrack);
+                
+                // Forțăm Play-ul
+                setTimeout(() => {
+                    audio.play();
+                    playBtn.innerText = "⏸️";
+                    document.body.classList.add('pulsing');
+                }, 100);
+            }
+        }
 
         function createMoney() {
             const m = document.createElement('div');
