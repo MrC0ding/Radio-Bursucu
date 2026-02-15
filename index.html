@@ -2,261 +2,110 @@
 <html lang="ro">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Radio Bursuc - August Infinit</title>
-    
-    <link rel="icon" type="image/png" href="logo_mini-removebg-preview.png">
-
     <style>
-        :root { 
-            --orange: #ff4500; 
-            --gold: #ffd700; 
-            --neon-green: #39ff14;
-        }
+        :root { --orange: #ff4500; --gold: #ffd700; --neon-green: #39ff14; }
+        body { margin: 0; padding: 0; min-height: 100vh; display: flex; justify-content: center; align-items: center; background: linear-gradient(135deg, #ff9d00, #ffeb3b, #00d4ff); font-family: sans-serif; overflow: hidden; touch-action: manipulation; }
         
-        body {
-            margin: 0; padding: 0; min-height: 100vh;
-            display: flex; justify-content: center; align-items: center;
-            background: linear-gradient(135deg, #ff9d00, #ffeb3b, #00d4ff);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            overflow: hidden;
-        }
+        #audio-unlock { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--orange); z-index: 1000; display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; text-align: center; }
+        .unlock-btn { background: white; color: var(--orange); border: none; padding: 20px 40px; border-radius: 50px; font-weight: bold; font-size: 1.2rem; box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
 
-        .wrapper {
-            display: flex; flex-direction: column; align-items: center;
-            width: 90%; max-width: 350px;
-        }
+        .wrapper { display: flex; flex-direction: column; align-items: center; width: 90%; max-width: 350px; }
+        .main-card { background: rgba(255, 255, 255, 0.95); padding: 25px; border-radius: 30px; border: 5px solid var(--orange); text-align: center; width: 100%; box-sizing: border-box; }
+        .day-number { font-size: 5rem; font-weight: 900; margin: 5px 0; }
+        .countdown-box { background: #000; color: var(--neon-green); padding: 10px; border-radius: 12px; font-family: monospace; margin-bottom: 20px; }
 
-        /* Logo-ul care plutește */
-        .header-logo {
-            width: 150px;
-            margin-bottom: 20px;
-            filter: drop-shadow(0 0 10px rgba(255, 69, 0, 0.5));
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-        }
-
-        /* Cardul alb */
-        .main-card {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 25px;
-            border-radius: 30px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-            text-align: center;
-            border: 5px solid var(--orange);
-            width: 100%;
-        }
-
-        .day-label { color: var(--orange); font-weight: bold; font-size: 0.9rem; margin: 0; }
+        .player-container { background: #1a1a1a; border-radius: 20px; padding: 15px; color: white; }
+        .btn-main { width: 80px; height: 80px; background: #28a745; border: none; border-radius: 50%; color: white; font-size: 2rem; cursor: pointer; }
         
-        .day-number {
-            font-size: 5rem;
-            font-weight: 900;
-            color: #222;
-            margin: 5px 0;
-            text-shadow: 3px 3px var(--gold);
-        }
-
-        .countdown-box {
-            background: #000;
-            color: var(--neon-green);
-            padding: 10px;
-            border-radius: 12px;
-            font-family: 'Courier New', Courier, monospace;
-            margin-bottom: 20px;
-            font-size: 0.8rem;
-            font-weight: bold;
-        }
-
-        /* Player Muzică */
-        .player-container {
-            background: #1a1a1a;
-            border-radius: 20px;
-            padding: 15px;
-            color: white;
-        }
-
-        .track-info {
-            font-size: 0.75rem;
-            color: var(--gold);
-            margin-bottom: 15px;
-            font-weight: bold;
-            height: 20px;
-            overflow: hidden;
-        }
-
-        .controls {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .btn {
-            background: #333;
-            border: none;
-            color: white;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-
-        .btn-small { width: 45px; height: 45px; font-size: 1.2rem; }
-        
-        .btn-main {
-            width: 70px;
-            height: 70px;
-            background: #28a745;
-            font-size: 1.8rem;
-            box-shadow: 0 0 15px rgba(40,167,69,0.5);
-        }
-
-        .btn:active { transform: scale(0.9); }
-
-        /* Efect de bani care cad */
-        .money {
-            position: absolute;
-            top: -50px;
-            z-index: 100;
-            font-size: 2rem;
-            animation: fall 3s linear forwards;
-            pointer-events: none;
-        }
-
-        @keyframes fall {
-            to { transform: translateY(110vh) rotate(360deg); }
-        }
-
-        .pulsing { animation: pulse 0.5s infinite alternate; }
-        @keyframes pulse {
-            from { filter: brightness(1); }
-            to { filter: brightness(1.2); }
-        }
+        .money { position: absolute; top: -50px; z-index: 100; font-size: 2rem; animation: fall 3s linear forwards; pointer-events: none; }
+        @keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
     </style>
 </head>
 <body>
 
+    <div id="audio-unlock">
+        <button class="unlock-btn" onpointerdown="unlockAudio()">DEBLOCHEAZĂ MUZICA 🚀</button>
+    </div>
+
     <div class="wrapper">
-        <img src="logo_mare.png" alt="Logo" class="header-logo">
-
-        <div class="main-card" id="card">
-            <p class="day-label">AUGUST INFINIT</p>
+        <div class="main-card">
             <h1 class="day-number" id="day-display">31</h1>
-            
-            <div class="countdown-box">
-                <div id="timer">00z : 00h : 00m : 00s</div>
-            </div>
-
+            <div class="countdown-box" id="timer">00z : 00h : 00m : 00s</div>
             <div class="player-container">
-                <div class="track-info" id="track-name">Se încarcă...</div>
-                
-                <div class="controls">
-                    <button class="btn btn-small" onclick="prevTrack()">⏮️</button>
-                    <button class="btn btn-main" id="play-btn" onclick="togglePlay()">▶️</button>
-                    <button class="btn btn-small" onclick="nextTrack()">⏭️</button>
-                </div>
+                <div id="track-name" style="color: var(--gold); margin-bottom: 15px; font-size: 0.8rem;">Se încarcă...</div>
+                <button class="btn-main" id="play-btn" onpointerdown="togglePlay()">▶️</button>
             </div>
         </div>
     </div>
 
-    <audio id="myAudio" preload="auto"></audio>
+    <audio id="myAudio" playsinline loop></audio>
 
     <script>
-        // LISTA DE PIESE (Modifică aici numele fișierelor dacă e nevoie)
-        const playlist = [
-            { name: "Tzanca Uraganu - Vara-i vara", file: "vara-i-vara.mp3" },
-            { name: "Babasha - Marae", file: "BABASHA - Marae _ OfficialVideo.mp3" },
-            { name: "Gheboasa - Baba", file: "GHEBOASA x Alberto Guta - Baba _ Official Video.mp3" }
-        ];
-
-        let currentTrack = 0;
         const audio = document.getElementById('myAudio');
         const playBtn = document.getElementById('play-btn');
-        const trackName = document.getElementById('track-name');
-        let moneyInterval;
+        const playlist = [
+            { name: "Tzanca Uraganu - Vara-i vara", file: "vara-i-vara.mp3" }
+        ];
 
-        // Încărcare piesă
-        function loadTrack(index) {
-            audio.src = playlist[index].file;
-            trackName.innerText = playlist[index].name;
+        // Această funcție "agață" contextul audio de browser definitiv
+        function unlockAudio() {
+            audio.src = playlist[0].file;
             audio.load();
+            // Încercăm un play scurt de 0.1 secunde pentru a păcăli sistemul
+            audio.play().then(() => {
+                setTimeout(() => {
+                    audio.pause();
+                    document.getElementById('audio-unlock').style.display = 'none';
+                }, 100);
+            }).catch(() => {
+                document.getElementById('audio-unlock').style.display = 'none';
+            });
         }
 
-        // Play / Pauză
         function togglePlay() {
             if (audio.paused) {
-                audio.play().catch(e => alert("Apasă OK pentru a porni muzica!"));
-                playBtn.innerText = "⏸️";
-                document.getElementById('card').classList.add('pulsing');
-                startMoney();
+                // Forțăm redarea fără a mai verifica alte condiții
+                const playPromise = audio.play();
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        playBtn.innerText = "⏸️";
+                        startMoney();
+                    }).catch(error => {
+                        // Dacă crapă, reîncărcăm sursa complet
+                        audio.src = playlist[0].file;
+                        audio.play();
+                    });
+                }
             } else {
                 audio.pause();
                 playBtn.innerText = "▶️";
-                document.getElementById('card').classList.remove('pulsing');
                 stopMoney();
             }
         }
 
-        function nextTrack() {
-            currentTrack = (currentTrack + 1) % playlist.length;
-            loadTrack(currentTrack);
-            audio.play();
-            playBtn.innerText = "⏸️";
-        }
-
-        function prevTrack() {
-            currentTrack = (currentTrack - 1 + playlist.length) % playlist.length;
-            loadTrack(currentTrack);
-            audio.play();
-            playBtn.innerText = "⏸️";
-        }
-
-        // Efect bani
+        // Logică bani și timp...
+        let moneyInterval;
         function startMoney() {
             moneyInterval = setInterval(() => {
-                const bill = document.createElement('div');
-                bill.className = 'money';
-                bill.innerText = ['💵', '💸', '💰', '💶'][Math.floor(Math.random() * 4)];
-                bill.style.left = Math.random() * 100 + "vw";
-                document.body.appendChild(bill);
-                setTimeout(() => bill.remove(), 3000);
-            }, 300);
+                const b = document.createElement('div');
+                b.className = 'money'; b.innerText = '💵';
+                b.style.left = Math.random() * 100 + "vw";
+                document.body.appendChild(b);
+                setTimeout(() => b.remove(), 3000);
+            }, 500);
         }
+        function stopMoney() { clearInterval(moneyInterval); }
 
-        function stopMoney() {
-            clearInterval(moneyInterval);
-        }
-
-        // Logică Timp și Dată
         function updateTime() {
             const start = new Date('2025-08-31');
-            const target = new Date('June 15, 2026 00:00:00');
             const now = new Date();
-
-            // Ziua din August Infinit
-            const diffDays = Math.floor((now - start) / (1000 * 60 * 60 * 24));
-            document.getElementById('day-display').innerText = 31 + diffDays;
-
-            // Countdown până la vară
-            const diff = target - now;
-            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const s = Math.floor((diff % (1000 * 60)) / 1000);
-
-            document.getElementById('timer').innerText = `${d}z : ${h}h : ${m}m : ${s}s până la vară!`;
+            document.getElementById('day-display').innerText = 31 + Math.floor((now - start) / 86400000);
+            document.getElementById('track-name').innerText = playlist[0].name;
         }
-
-        // Inițializare
-        loadTrack(0);
         setInterval(updateTime, 1000);
         updateTime();
-
-        // Auto-next când se termină piesa
-        audio.onended = () => nextTrack();
     </script>
 </body>
 </html>
