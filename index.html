@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Radio Bursuc v13.0 - Mobile Elite</title>
+    <title>Radio Bursuc v14.0 - PLAYER REPARAT</title>
     <style>
         :root {
             --primary: #ff0000;
@@ -19,8 +19,7 @@
             margin: 0; padding: 0;
             background: radial-gradient(circle, #ff9d00, #ff4500);
             font-family: 'Arial Black', sans-serif;
-            height: 100vh; height: -webkit-fill-available;
-            display: flex; justify-content: center; align-items: center;
+            height: 100vh; display: flex; justify-content: center; align-items: center;
             overflow: hidden; color: white; transition: 0.5s;
         }
 
@@ -33,67 +32,54 @@
         body.sef-mode { animation: terror-pulse 0.6s infinite; }
         @keyframes terror-pulse { 0%, 100% { background: #000; } 50% { background: #600; } }
 
-        /* ELICOPTER RECALIBRAT PENTRU MOBIL */
         .helicopter {
             position: absolute; top: 10%; left: -300px; font-size: 1.5rem;
             white-space: nowrap; z-index: 5; animation: fly 15s linear infinite;
         }
-        .banner { background: red; color: white; padding: 3px 10px; font-size: 0.6rem; border: 1.5px solid gold; margin-left: 5px; vertical-align: middle; }
+        .banner { background: red; color: white; padding: 3px 10px; font-size: 0.6rem; border: 1.5px solid gold; margin-left: 5px; }
         @keyframes fly { to { left: 120vw; } }
 
-        #sef-text { display: none; position: fixed; top: 1.5%; width: 100%; text-align: center; z-index: 110; }
-        .titlu-sef { font-size: 1.4rem; color: #ff0000; text-shadow: 2px 2px 0px #000, -1px -1px 0px #fff; animation: shake 0.2s infinite; }
-        @keyframes shake { 0%, 100% { transform: translate(1px, 1px); } 50% { transform: translate(-1px, -1px); } }
+        #sef-text { display: none; position: fixed; top: 2%; width: 100%; text-align: center; z-index: 110; }
+        .titlu-sef { font-size: 1.2rem; color: #ff0000; text-shadow: 2px 2px 0px #000; animation: shake 0.2s infinite; }
 
         .container {
             width: 92%; max-width: 360px; background: rgba(0, 0, 0, 0.95);
             padding: 15px; border-radius: 25px; border: 3px solid var(--secondary);
             text-align: center; position: relative; z-index: 101;
-            max-height: 95vh; display: flex; flex-direction: column; gap: 8px;
+            display: flex; flex-direction: column; gap: 10px;
         }
 
-        .august-box { margin: 0; }
-        .august-label { color: red; font-size: 0.6rem; margin: 0; letter-spacing: 1px; }
-        .big-day { font-size: 3rem; margin: 0; line-height: 1; background: linear-gradient(to bottom, #fff, var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        
-        #countdown-label { font-size: 0.55rem; color: gold; font-weight: bold; }
-        .timer-box { background: #222; padding: 6px; border-radius: 10px; color: var(--neon); font-family: monospace; font-size: 0.9rem; border: 1px solid #444; }
+        .big-day { font-size: 3rem; margin: 0; background: linear-gradient(to bottom, #fff, var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .timer-box { background: #222; padding: 8px; border-radius: 10px; color: var(--neon); font-family: monospace; font-size: 0.9rem; border: 1px solid #444; }
 
         .cash-btn {
             background: linear-gradient(to bottom, #2ecc71, #27ae60);
-            color: white; border: none; padding: 12px; width: 100%;
-            border-radius: 12px; font-weight: bold; font-size: 1rem;
-            cursor: pointer; box-shadow: 0 4px 0 #1e8449; position: relative; z-index: 105;
+            color: white; border: none; padding: 12px; border-radius: 12px; font-weight: bold; font-size: 1rem;
+            cursor: pointer; box-shadow: 0 4px 0 #1e8449;
         }
-        .cash-btn:active { transform: translateY(2px); box-shadow: 0 2px 0 #1e8449; }
 
         #top-donatii {
             display: none; background: rgba(255, 255, 255, 0.08);
-            border: 1px solid var(--secondary); border-radius: 8px;
-            padding: 5px; font-size: 0.7rem;
+            border: 1px solid var(--secondary); border-radius: 8px; padding: 5px; font-size: 0.7rem;
         }
-        .donator-row { display: flex; justify-content: space-between; color: var(--neon); padding: 1px 4px; }
 
-        .player-ui { background: #222; padding: 8px; border-radius: 15px; border: 1px solid #444; }
-        #song-title { font-size: 0.65rem; color: gold; margin-bottom: 5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .controls { display: flex; justify-content: center; align-items: center; gap: 20px; }
-        .btn-ctrl { background: none; border: none; color: white; font-size: 1.2rem; cursor: pointer; padding: 5px; }
-        #master-play { width: 40px; height: 40px; border-radius: 50%; background: var(--neon); border: none; font-size: 1rem; }
+        .player-ui { background: #222; padding: 10px; border-radius: 15px; border: 1px solid #444; }
+        #song-title { font-size: 0.7rem; color: gold; margin-bottom: 8px; height: 15px; overflow: hidden; }
+        .controls { display: flex; justify-content: center; align-items: center; gap: 25px; }
+        .btn-ctrl { background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; }
+        #master-play { width: 45px; height: 45px; border-radius: 50%; background: var(--neon); border: none; font-size: 1.2rem; }
 
         .dedicatii-container { 
             background: #000; border: 1.5px solid var(--primary); 
-            border-radius: 6px; position: relative; overflow: hidden; 
-            height: 35px; min-height: 35px;
+            border-radius: 6px; position: relative; overflow: hidden; height: 35px;
         }
         .ticker-text { position: absolute; white-space: nowrap; font-size: 0.9rem; color: var(--neon); line-height: 35px; animation: marquee 10s linear infinite; }
         @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-180%); } }
 
-        #user-msg { width: 100%; background: black; color: white; border: 1px solid #444; padding: 8px; border-radius: 6px; font-size: 0.8rem; outline: none; }
-
         #news-pop {
             position: fixed; bottom: 10px; left: 50%; transform: translateX(-50%);
             background: red; color: white; padding: 6px 12px; border: 1.5px solid white;
-            z-index: 1000; display: none; font-size: 0.7rem; font-weight: bold; white-space: nowrap; width: 90%; text-align: center;
+            z-index: 1000; display: none; font-size: 0.7rem; font-weight: bold; width: 90%; text-align: center;
         }
 
         .money { position: fixed; top: -50px; pointer-events: none; z-index: 200; animation: rain 2.5s linear forwards; }
@@ -104,19 +90,16 @@
 
     <div class="helicopter">🛸 <span class="banner">BURSUCU - REGELE DIN MARAMUREȘ 👑</span></div>
     <div id="news-pop">BREAKING NEWS</div>
-
-    <div id="sef-text">
-        <div class="titlu-sef">BURSUCU - REGELE MARAMUREȘULUI</div>
-    </div>
+    <div id="sef-text"><div class="titlu-sef">BURSUCU - REGELE MARAMUREȘULUI</div></div>
 
     <div class="container">
-        <div class="august-box">
-            <p class="august-label">AUGUST INFINIT</p>
+        <div>
+            <p style="color:red; font-size:0.6rem; margin:0;">AUGUST INFINIT</p>
             <h1 class="big-day" id="day-counter">31</h1>
         </div>
 
-        <div class="countdown-section">
-            <div id="countdown-label">TIMP PÂNĂ LA VARĂ</div>
+        <div>
+            <div id="countdown-label" style="font-size:0.55rem; color:gold;">TIMP PÂNĂ LA VARĂ</div>
             <div class="timer-box" id="countdown">00d : 00h : 00m : 00s</div>
         </div>
 
@@ -128,7 +111,7 @@
         </div>
 
         <div class="player-ui">
-            <div id="song-title">Alege piesa...</div>
+            <div id="song-title">Se încarcă playlist-ul...</div>
             <div class="controls">
                 <button onclick="changeTrack(-1)" class="btn-ctrl">⏮️</button>
                 <button id="master-play" onclick="togglePlayback()">▶️</button>
@@ -137,10 +120,10 @@
         </div>
 
         <div class="dedicatii-container">
-            <div id="ticker-text" class="ticker-text">Bursucu dă ora exactă în tot Maramureșul...</div>
+            <div id="ticker-text" class="ticker-text">Radio Bursuc - Singurul radio cu valoare adevărată! 💎</div>
         </div>
 
-        <input type="text" id="user-msg" placeholder="Mesaj pentru brigadă...">
+        <input type="text" id="user-msg" style="width:100%; background:black; color:white; border:1px solid #444; padding:8px; border-radius:6px;" placeholder="Mesaj pentru brigadă...">
     </div>
 
     <audio id="main-audio" playsinline></audio>
@@ -149,9 +132,7 @@
         const audio = document.getElementById('main-audio');
         const tickerText = document.getElementById('ticker-text');
         const playBtn = document.getElementById('master-play');
-        const newsPop = document.getElementById('news-pop');
-        const topDonatii = document.getElementById('top-donatii');
-        const donatoriList = document.getElementById('donatori-list');
+        const songTitleDisplay = document.getElementById('song-title');
         
         const playlist = [
             { name: "Tzanca Uraganu - Vara-i vara", url: "vara-i-vara.mp3" },
@@ -159,34 +140,71 @@
             { name: "Dani Mocanu - Caracter de leu", url: "Dani Mocanu - Caracter de Leu  Official Video.mp3" }
         ];
 
-        const newsAlerts = [
-            "BREAKING NEWS: Bursucu a mai cumpărat un oraș în Maramureș! 💸",
-            "ALERTĂ: S-a dublat valoarea în județ, trece Bursucu cu elicopterul! 🚁",
-            "ULTIMĂ ORĂ: S-au terminat pachetele de bani la bancă, le-a luat Bursucu pe toate! 📦",
-            "TEROARE: Dușmanii au intrat în carantină când au văzut valoarea! ⚔️",
-            "EXCLUSIV: Bursucu - Idolul femeilor și spaima fraierilor! 👑",
-            "BOMBĂ: Majorat istoric pe 10 Decembrie 2026! 🔞",
-            "STIRE: Radarele nu pot prinde valoarea Bursucului! 🏎️"
-        ];
-
         let trackIndex = 0;
         let isPlaying = false;
         let moneyInterval = null;
 
         function initApp() {
-            audio.src = playlist[trackIndex].url;
+            loadTrack(0);
             setInterval(updateCounters, 1000);
             setInterval(showNews, 10000);
-            setInterval(() => {
-                const isDani = playlist[trackIndex].name.includes("Dani Mocanu");
-                tickerText.innerText = isDani ? "PACHETE PACHETE PENTRU CEL MAI MARE LEU! 🦁" : "Radio Bursuc - Valoare fără număr! 💎";
-            }, 8000);
+        }
+
+        function loadTrack(index) {
+            trackIndex = index;
+            audio.src = playlist[trackIndex].url;
+            audio.load(); // Forțează browserul să încarce noul fișier
+            songTitleDisplay.innerText = playlist[trackIndex].name;
+            handleSefEffects();
+        }
+
+        function togglePlayback() {
+            if (audio.paused) {
+                audio.play().then(() => {
+                    isPlaying = true;
+                    playBtn.innerText = "⏸️";
+                    handleSefEffects();
+                }).catch(e => console.log("Eroare play:", e));
+            } else {
+                audio.pause();
+                isPlaying = false;
+                playBtn.innerText = "▶️";
+                handleSefEffects();
+            }
+        }
+
+        function changeTrack(dir) {
+            trackIndex = (trackIndex + dir + playlist.length) % playlist.length;
+            loadTrack(trackIndex);
+            if (isPlaying) {
+                audio.play();
+            }
+        }
+
+        function handleSefEffects() {
+            const isDani = playlist[trackIndex].name.includes("Dani Mocanu");
+            const active = isDani && isPlaying;
+            
+            document.body.classList.toggle('sef-mode', active);
+            document.getElementById('sef-text').style.display = active ? 'block' : 'none';
+            document.getElementById('top-donatii').style.display = active ? 'block' : 'none';
+            
+            if(active) {
+                if(!moneyInterval) moneyInterval = setInterval(() => triggerMoneyExplosion(false), 1500);
+                tickerText.innerText = "PACHETE PACHETE PENTRU CEL MAI MARE LEU! 🦁";
+            } else {
+                clearInterval(moneyInterval);
+                moneyInterval = null;
+                tickerText.innerText = "Radio Bursuc - Valoare fără număr! 💎";
+            }
         }
 
         function updateCounters() {
+            // August Infinit
             const diff = Math.floor((new Date() - new Date('2025-08-31')) / 86400000);
             document.getElementById('day-counter').innerText = 31 + diff;
             
+            // Majorat/Vara
             let isDani = playlist[trackIndex].name.includes("Dani Mocanu");
             let target = isDani ? new Date('December 10, 2026') : new Date('June 15, 2026');
             document.getElementById('countdown-label').innerText = isDani ? "TIMP PÂNĂ LA MAJORAT (18 ANI)" : "TIMP PÂNĂ LA VARĂ";
@@ -199,14 +217,8 @@
 
             if(isDani && isPlaying) {
                 const nume = ["Gigi Teroare", "Marius Diamant", "Adi Viena", "Ionut Mondialu"][Math.floor(Math.random()*4)];
-                donatoriList.innerHTML = `<div class="donator-row"><span>${nume}</span><span>${Math.floor(Math.random()*5000)} € 💸</span></div>`;
+                document.getElementById('donatori-list').innerHTML = `<div style="display:flex; justify-content:space-between; color:#39ff14;"><span>${nume}</span><span>${Math.floor(Math.random()*5000)} € 💸</span></div>`;
             }
-        }
-
-        function showNews() {
-            newsPop.innerText = newsAlerts[Math.floor(Math.random()*newsAlerts.length)];
-            newsPop.style.display = 'block';
-            setTimeout(() => { newsPop.style.display = 'none'; }, 4000);
         }
 
         function triggerMoneyExplosion(manual = false) {
@@ -224,30 +236,15 @@
             }
         }
 
-        function togglePlayback() {
-            if (audio.paused) { audio.play(); isPlaying = true; playBtn.innerText = "⏸️"; }
-            else { audio.pause(); isPlaying = false; playBtn.innerText = "▶️"; }
-            handleSefEffects();
+        function showNews() {
+            const newsPop = document.getElementById('news-pop');
+            const newsAlerts = ["BREAKING: Bursucu a mai cumpărat un oraș!", "ALERTĂ: S-a dublat valoarea în județ!", "BOMBĂ: Majorat istoric pe 10 Decembrie!", "INFO: Bursucu - Idolul femeilor!"];
+            newsPop.innerText = newsAlerts[Math.floor(Math.random()*newsAlerts.length)];
+            newsPop.style.display = 'block';
+            setTimeout(() => { newsPop.style.display = 'none'; }, 4000);
         }
 
-        function handleSefEffects() {
-            const isDani = playlist[trackIndex].name.includes("Dani Mocanu");
-            const active = isDani && isPlaying;
-            document.body.classList.toggle('sef-mode', active);
-            document.getElementById('sef-text').style.display = active ? 'block' : 'none';
-            topDonatii.style.display = active ? 'block' : 'none';
-            if(active && !moneyInterval) moneyInterval = setInterval(() => triggerMoneyExplosion(false), 1500);
-            else if(!active) { clearInterval(moneyInterval); moneyInterval = null; }
-        }
-
-        function changeTrack(dir) {
-            trackIndex = (trackIndex + dir + playlist.length) % playlist.length;
-            audio.src = playlist[trackIndex].url;
-            document.getElementById('song-title').innerText = playlist[trackIndex].name;
-            if(isPlaying) audio.play();
-            handleSefEffects();
-        }
-
+        audio.onended = () => changeTrack(1);
         window.onload = initApp;
     </script>
 </body>
